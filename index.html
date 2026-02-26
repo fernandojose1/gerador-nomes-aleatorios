@@ -1,422 +1,352 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8465851915621664"
-     crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Nomes </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" defer></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        body {
-            align-items: center;
-            background: linear-gradient(to bottom, #a8b8e8, #ffffff);
-             display: flex;
-            flex-direction: column;
-             justify-content: center;
-            min-height: 100vh;
-            padding-top: 20px;
-            transition: background 0.5s;
-         }
-         body.boy-bg {
-            background: linear-gradient(to bottom, #a8b8e8, #ffffff);
-        }
-       body.girl-bg {
-            background: linear-gradient(to bottom, #fbcfe8, #ffffff);
-        }
-         body.pet-bg {
-             background: linear-gradient(to bottom, #a0e9e0, #ffffff);
-       }
-         .btn-primary {
-            animation: pulse 2s infinite;
-             background-color: #3182ce;
-            border-color: #3182ce;
-        }
-       @keyframes pulse {
-            0% {
-                transform: scale(1);
-           }
-            50% {
-              transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-         .btn-primary:hover {
-             background-color: #2767a5;
-            border-color: #2767a5;
-        }
-        .card {
-             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-             max-width: 600px;
-            transition: box-shadow 0.3s;
-            width: 100%;
-        }
-        .card:hover {
-             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
-        .card-text {
-             color: #6c757d;
-        }
-        .card-title {
-            color: #343a40;
-            font-size: 2rem;
-        }
-        .copy-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-           margin-left: 5px;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-        }
-         .copy-button:hover {
-             opacity: 1;
-         }
-         .copy-button.copied {
-            opacity: 1;
-        }
-      footer {
-            font-size: 0.8rem;
-            margin-top: 20px;
-            padding: 10px 0;
-            text-align: center;
-        }
-       footer a {
-           color: #facc15;
-       }
-        footer a:hover {
-            color: #0d6efd;
-        }
-        .form-check-input:checked {
-            background-color: #3182ce;
-            border-color: #3182ce;
-         }
-        .form-check-label {
-             color: #6c757d;
-        }
-        .generated-name {
-           color: #1e3a8a;
-            display: inline-block;
-           font-size: 1.7rem;
-            font-weight: bold;
-             margin-top: 1rem;
-            opacity: 1;
-           transition: opacity 0.3s ease-in-out;
-       }
-       .generated-name.fade-in {
-           opacity: 1;
-        }
-        .letter-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-             margin-top: 10px;
-        }
-         .letter-item {
-            color: #aaa;
-            cursor: pointer;
-            font-size: 0.65rem;
-           margin: 0 2px;
-             padding: 2px 5px; /* Add padding */
-            text-decoration: none;
-           transition: all 0.2s;
-         }
-         .letter-item:hover {
-           color: #333;
-            font-size: 0.8rem;
-           font-weight: bold;
-            transform: scale(1.1);
-        }
-         .letter-item.selected {
-          background-color: #cce5ff;
-           color: #000;
-       }
-       .share-buttons {
-           display: flex;
-           justify-content: center;
-           margin-top: 10px;
-        }
-       .share-button {
-           background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            margin: 0 5px;
-           opacity: 0.6;
-            transition: opacity 0.3s;
-       }
-         .share-button:hover {
-            opacity: 1;
-        }
-        .spinner {
-           animation: spin 1s linear infinite;
-             border: 4px solid rgba(0, 0, 0, 0.1);
-           border-left-color: #3182ce;
-             border-radius: 50%;
-            display: inline-block;
-           height: 20px;
-           margin-right: 5px;
-            vertical-align: sub;
-             width: 20px;
-        }
-        @keyframes spin {
-           to {
-             transform: rotate(360deg);
-          }
-       }
-         @media (max-width: 768px) {
-           body {
-              padding-top: 10px;
-           }
-           .card {
-                margin-top: 10px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerador de Nomes Aleatórios</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #eef2ff;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #4f46e5;
+      --accent-soft: #e0e7ff;
+    }
+    body[data-theme='dark'] {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #818cf8;
+      --accent-soft: #312e81;
+    }
+    body {
+      background: linear-gradient(145deg, var(--bg), #ffffff);
+      color: var(--text);
+      min-height: 100vh;
+      transition: 0.25s ease;
+    }
+    .app-card {
+      background: var(--card);
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    }
+    .generated-name {
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 800;
+      color: var(--accent);
+      min-height: 3.4rem;
+    }
+    .letter-grid {
+      display: grid;
+      grid-template-columns: repeat(13, minmax(0, 1fr));
+      gap: 0.35rem;
+    }
+    .letter-grid button {
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #111827;
+      border-radius: 10px;
+      font-weight: 700;
+      padding: 0.3rem;
+    }
+    .letter-grid button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    body[data-theme='dark'] .letter-grid button {
+      background: #334155;
+      border-color: #475569;
+      color: #e2e8f0;
+    }
+    .pill {
+      background: var(--accent-soft);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .history-item,
+    .favorite-item {
+      cursor: pointer;
+    }
+  </style>
 </head>
-<body class="boy-bg">
-    <header>
-   </header>
-        <main class="container text-center">
-             <div class="card shadow-lg p-4 rounded-4 mt-3">
-               <div class="card-body">
-                   <h1 class="card-title mb-3">Gerador de Nomes</h1>
-                    <p class="card-text text-muted">Você escolhe o gênero, a sorte escolhe o nome! Ou é o contrário?</p>
-                    <div id="generated-name" class="generated-name"></div>
-                   <div class="mt-3">
-                       <button id="generate-btn" class="btn btn-primary" title="Gerar Nome">
-                            <span id="spinner" class="spinner" style="display: none;"></span>
-                           Gerar Nome
-                        </button>
-                    </div>
-                   <div class="form-check form-check-inline mt-3">
-                        <input class="form-check-input" type="radio" name="type" id="boy" value="menino" checked>
-                       <label class="form-check-label small" for="boy">Menino</label>
-                    </div>
-                  <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="type" id="girl" value="menina">
-                        <label class="form-check-label small" for="girl">Menina</label>
-                   </div>
-                    <div class="form-check form-check-inline">
-                         <input class="form-check-input" type="radio" name="type" id="pet" value="pet">
-                       <label class="form-check-label small" for="pet">Pet</label>
-                    </div>
-                     <div class="letter-list">
-                        <a class="letter-item" href="#" data-letter="A">A</a>
-                        <a class="letter-item" href="#" data-letter="B">B</a>
-                       <a class="letter-item" href="#" data-letter="C">C</a>
-                         <a class="letter-item" href="#" data-letter="D">D</a>
-                       <a class="letter-item" href="#" data-letter="E">E</a>
-                       <a class="letter-item" href="#" data-letter="F">F</a>
-                     <a class="letter-item" href="#" data-letter="G">G</a>
-                       <a class="letter-item" href="#" data-letter="H">H</a>
-                       <a class="letter-item" href="#" data-letter="I">I</a>
-                        <a class="letter-item" href="#" data-letter="J">J</a>
-                       <a class="letter-item" href="#" data-letter="K">K</a>
-                        <a class="letter-item" href="#" data-letter="L">L</a>
-                        <a class="letter-item" href="#" data-letter="M">M</a>
-                       <a class="letter-item" href="#" data-letter="N">N</a>
-                      <a class="letter-item" href="#" data-letter="O">O</a>
-                       <a class="letter-item" href="#" data-letter="P">P</a>
-                     <a class="letter-item" href="#" data-letter="Q">Q</a>
-                     <a class="letter-item" href="#" data-letter="R">R</a>
-                      <a class="letter-item" href="#" data-letter="S">S</a>
-                     <a class="letter-item" href="#" data-letter="T">T</a>
-                     <a class="letter-item" href="#" data-letter="U">U</a>
-                    <a class="letter-item" href="#" data-letter="V">V</a>
-                     <a class="letter-item" href="#" data-letter="W">W</a>
-                    <a class="letter-item" href="#" data-letter="X">X</a>
-                     <a class="letter-item" href="#" data-letter="Y">Y</a>
-                       <a class="letter-item" href="#" data-letter="Z">Z</a>
-                  </div>
-               </div>
-                <div id="share-area" style="display: none;">
-                    <div class="share-buttons">
-                        <button class="share-button" onclick="shareOnWhatsApp()"><i class="bi bi-whatsapp" style="color: #25d366;"></i></button>
-                        <button class="share-button" onclick="shareOnFacebook()"><i class="bi bi-facebook" style="color: #1877f2;"></i></button>
-                        <button class="share-button" onclick="shareOnTwitter()"><i class="bi bi-twitter" style="color: #1da1f2;"></i></button>
-                    </div>
-                 </div>
+<body>
+  <main class="container py-4 py-md-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9">
+        <div class="app-card p-4 p-md-5">
+          <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center mb-3">
+            <h1 class="h2 m-0">🎲 Gerador de Nomes Aleatórios</h1>
+            <button id="theme-toggle" class="btn btn-outline-secondary btn-sm" type="button">
+              <i class="bi bi-moon-stars"></i> Tema
+            </button>
+          </div>
+
+          <p class="text-secondary mb-4">Agora com base de nomes ampliada, busca por trecho e filtros combináveis.</p>
+
+          <div class="generated-name text-center mb-2" id="generated-name" aria-live="polite">Seu próximo nome incrível aparece aqui ✨</div>
+
+          <div class="d-flex justify-content-center gap-2 mb-4">
+            <button id="generate-btn" class="btn btn-primary btn-lg"><i class="bi bi-shuffle"></i> Gerar nome</button>
+            <button id="copy-btn" class="btn btn-outline-primary" disabled><i class="bi bi-clipboard"></i></button>
+            <button id="favorite-btn" class="btn btn-outline-warning" disabled><i class="bi bi-star"></i></button>
+            <button id="share-btn" class="btn btn-outline-success" disabled><i class="bi bi-share"></i></button>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-md-3">
+              <label class="form-label">Categoria</label>
+              <select id="category" class="form-select">
+                <option value="menino">Menino</option>
+                <option value="menina">Menina</option>
+                <option value="pet">Pet</option>
+              </select>
             </div>
-       </main>
-   <footer class="mt-4 text-muted">
-       <p>© 2025 Gerador de Nomes Aleatórios. Todos os direitos reservados. <a href="https://www.linkedin.com/in/fernandojoselehmkuhl?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">Meu LinkedIn</a></p>
-    </footer>
-    <script>
-        const boyNames = [
-            "Gabriel", "Lucas", "Miguel", "Arthur", "Enzo", "Pedro", "Rafael", "Gustavo", "Matheus", "Felipe",
-            "Vitor", "Ricardo", "Daniel", "Thiago", "Leonardo", "Diego", "Henrique", "João", "Carlos", "Marcelo",
-            "André", "Bruno", "Tiago", "Igor", "Fábio", "Fernando", "Samuel", "Eduardo", "Maurício", "Alexandre",
-            "Júnior", "Luiz", "Vinícius", "José", "Caio", "Marcelo", "Felipe", "William", "Douglas", "Erick",
-            "Elias", "Afonso", "Rodrigo", "Jonas", "Ricardo", "Renan", "Arthur", "Cauã", "Augusto", "Davi",
-            "Ivan", "Victor", "Otávio", "Guilherme", "Lucas", "Vítor", "Yuri", "Luan", "Carlos", "Mateus",
-            "Benjamin", "Enrico", "José", "Alan", "Douglas", "Filipe", "Fernando", "Guilherme", "Zé", "Bernardo",
-            "Leandro", "Ezequiel", "Raphael", "Léo", "Pablo", "Jonatan", "César", "Nelson", "Isaac", "Carlos",
-            "Roberto", "Victor", "José", "Adriano", "Márcio", "Guilherme", "Nicolas", "Jorge", "Flávio", "Ian",
-            "Hugo", "Rodrigo", "Henrique", "Sandro", "Sérgio", "Mário", "Eduardo", "Simone", "Raul", "Elías",
-            "Marco", "Mário", "Paulo", "João", "Vinícius", "Leandro", "César", "Anderson", "Felipe", "Vinícius",
-              "Murilo", "Heitor", "Theo", "Breno", "Lorenzo", "Bryan", "Dante", "Emanuel", "Levi", "Nathan",
-              "Ryan", "Vicente", "Yago", "Anthony", "Christian", "Danilo", "David Luiz", "Erickson", "Fabrício", "Gael",
-              "Hugo Leonardo", "Ícaro", "Jairo", "Kenzo", "Leandro", "Marlon", "Nataniel", "Oliver", "Paolo", "Quentin",
-              "Ruan", "Salomão", "Tadeu", "Uriel", "Vinícius Júnior", "Wallace", "Xavier", "Yohan", "Zion", "Abner",
-              "Benício", "Caleb", "Diego Armando", "Elton", "Ferdinando", "Giovanni", "Henrique Augusto", "Iago", "Jeremias",
-              "Kauan", "Luan Carlos", "Marcelinho", "Neymar Jr", "Olavo", "Pietro", "Rafael Lucas", "Saulo", "Thales", "Ulisses",
-              "Vicenzo", "Wesley", "Ximendes", "Yuri Gabriel", "Zaqueu", "Aaron", "Baltazar", "Cícero", "Darius",
-              "Édson", "Frederico", "Gilberto", "Humberto", "Isaque", "Josué", "Kaio", "Leonardo Henrique", "Márcio Roberto",
-              "Nuno", "Oscar Júnior", "Plínio", "Quirino", "Ricardo Augusto", "Sérgio Luiz", "Túlio", "Umberto", "Valter",
-              "Wilson", "Xisto", "Yuri André", "Zacarias"
-        ];
+            <div class="col-md-3">
+              <label class="form-label">Comprimento máximo</label>
+              <input id="length" class="form-control" type="number" min="2" max="20" placeholder="Ex.: 8" />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Contém trecho</label>
+              <input id="contains" class="form-control" type="text" placeholder="Ex.: li" />
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+              <div class="form-check">
+                <input id="no-repeat" class="form-check-input" type="checkbox" checked />
+                <label for="no-repeat" class="form-check-label">Evitar repetição recente</label>
+              </div>
+            </div>
+          </div>
 
-        const girlNames = [
-            "Ana", "Beatriz", "Carolina", "Débora", "Fernanda", "Patrícia", "Juliana", "Gabriela", "Camila", "Renata",
-            "Mariana", "Sabrina", "Raquel", "Aline", "Bianca", "Roberta", "Tatiane", "Daniela", "Luana", "Larissa",
-            "Amanda", "Natália", "Jéssica", "Larissa", "Vanessa", "Tânia", "Isabela", "Tereza", "Bruna", "Renata",
-            "Cláudia", "Paula", "Vera", "Rosana", "Carla", "Priscila", "Fabiana", "Luciana", "Mônica", "Gisele",
-            "Rafaela", "Eliane", "Marina", "Flávia", "Milena", "Luciana", "Kelly", "Giovanna", "Olga", "Eliane",
-            "Gabrielle", "Giovana", "Solange", "Neusa", "Vânia", "Joana", "Sueli", "Leila", "Cristiane", "Diana",
-            "Elaine", "Adriana", "Silvana", "Liliane", "Marcela", "Valéria", "Andrea", "Sílvia", "Adriana", "Sandra",
-            "Lúcia", "Andressa", "Maria", "Karine", "Isis", "Regina", "Patrícia", "Antônia", "Rosângela", "Janaína",
-            "Michele", "Sônia", "Luciane", "Tatiane", "Célia", "Lúcia", "Kátia", "Marta", "Heloísa", "Marilene",
-            "Ana Paula", "Carmen", "Samantha", "Célia", "Maria Clara", "Tereza", "Esther", "Vanessa", "Verônica",
-            "Marcela", "Larissa", "Yasmin", "Esther", "Vânia", "Catarina", "Verônica", "Tayná", "Magali", "Ludmila",
-              "Alice", "Sophia", "Helena", "Valentina", "Laura", "Isabela", "Manuela", "Júlia", "Maria Eduarda", "Luísa",
-              "Lívia", "Giovanna", "Maria Alice", "Lorena", "Beatriz", "Maria Clara", "Cecília", "Eloá", "Maria Júlia", "Emanuelly",
-              "Maria Luíza", "Antonella", "Ana Clara", "Maria Cecília", "Rebeca", "Yasmin", "Maria Vitória", "Isadora", "Sarah", "Maria Valentina",
-              "Alícia", "Melissa", "Clara", "Maria Fernanda", "Esther", "Ana Beatriz", "Lavínia", "Maria Helena", "Ana Júlia", "Maria Sophia",
-              "Gabrielly", "Mariana", "Evelyn", "Letícia", "Maria Flor", "Ana Luíza", "Nicole", "Maria Laura", "Rafaela", "Maria Alice",
-              "Aurora", "Maitê", "Amanda", "Maria Isabel", "Milena", "Hadassa", "Clarice", "Luana", "Heloise", "Catarina",
-               "Betina", "Olívia", "Ayla", "Luna", "Melina", "Agatha", "Jade", "Maya", "Chloe", "Pietra",
-              "Amélia", "Antônia", "Aurora", "Camila", "Dora", "Elisa", "Flora", "Heloísa", "Íris", "Joana",
-              "Kyra", "Lara", "Mirella", "Nina", "Olivia", "Penélope", "Quitéria", "Raíssa", "Sofia", "Teresa",
-              "Uma", "Vitória", "Wanda", "Xênia", "Yara", "Zara", "Zoe"
-        ];
+          <label class="form-label">Filtrar por inicial</label>
+          <div class="letter-grid mb-4" id="letters"></div>
 
-        const petNames = [
-           "Bob", "Mel", "Thor", "Nina", "Luck", "Meg", "Simba", "Lola", "Max", "Luna", "Fred", "Amora", "Billy",
-            "Mia", "Duke", "Belinha", "Toby", "Pandora", "Scooby", "Jade", "Zeus", "Mimi", "Bethoven", "Princesa",
-            "Rex", "Nala", "Pingo", "Estrela", "Cookie", "Floquinho", "Pipoca", "Aurora", "Bruce", "Branca",
-            "Mickey", "Kiara", "Oliver", "Sasha", "Dudinha", "Cacau", "Amendoim", "Paçoca", "Biscoito", "Floco",
-             "Chiquinha", "Romeu", "Jujuba", "Bolinha", "Bia", "Guto", "Lili", "Caco", "Fifi", "Neném",
-            "Bidu", "Lilica", "Toddy", "Zoe", "Teco", "Nica", "Kiko", "Maya", "Paco", "Polly", "Banzé", "Nina",
-             "Canela", "Pitty", "Thor", "Kyara", "Apolo", "Lulu", "Juba", "Mandy", "Tom", "Bella", "Zeca",
-             "Pretinha", "Bili", "Lady", "Didi", "Cindy", "Snoopy", "Lua", "Sheik", "Mag", "Lelé", "Pancho",
-            "Sol", "Nick", "Safira", "Leão", "Lala", "Bibi", "Xuxa", "Zezé", "Dory", "Pudim", "Marlon",
-            "Cléo", "Boris", "Tina", "Guto", "Jolie", "Bilbo", "Frida", "Chico", "Suki", "Loki", "Pituca",
-             "Kira", "Lili", "Dunga", "Melody", "Spike", "Julie", "Pingo", "Barbie", "Zack", "Suzy",
-            "Algodão", "Dino", "Brisa", "Joca", "Jade", "Pingo", "Flor", "Bolinha", "Sombra", "Estrela",
-            "Amora", "Chocolate", "Banzé", "Cacau", "Paçoca", "Pipoca", "Biscoito", "Floco", "Jujuba", "Amendoim",
-             "Bidu", "Chiquinha", "Lili", "Toddy", "Nica", "Kiko", "Polly", "Neném", "Caco", "Fifi",
-            "Bia", "Guto", "Lilica", "Teco", "Zoe", "Paco", "Mimi", "Belinha", "Lua", "Milo", "Aisha", "Nino",
-            "Jasmim", "Simão", "Pingo", "Snoopy", "Duque", "Pretinha", "Tita", "Bibi", "Chiquita", "Tico",
-           "Nico", "Candy", "Bambam", "Nicky", "Malu", "Pipo", "Tucha", "Pirata", "Mimosa", "Pingo", "Minnie",
-           "Tequila", "Caramelo", "Bolt", "Bethoven", "Bolinha", "Cacau", "Cacauzinho", "Café", "Canela", "Cheetos", "Chiclete",
-           "Choco", "Cid", "Conan", "Darth", "Diva", "Dona", "Dudu", "Dumbo", "Floquinho", "Garfield", "Gigi",
-           "Gordinho", "Gudang", "Hulk", "Juba", "Juba", "Kiwi", "Lady", "Lassie", "Lia", "Lilo", "Lulu",
-            "Madona", "Magia", "Magoo", "Maluco", "Marley", "Mateus", "Mel", "Menino", "Mickey", "Mila",
-            "Mimo", "Mona", "Neguinho", "Nina", "Paçoca", "Pérola", "Pimpolho", "Pingo", "Pipoca", "Pitu",
-            "Pongo", "Popi", "Preta", "Pretinha", "Princesa", "Pudim", "Puppy", "Saci", "Safira", "Shakira", "Sheik",
-           "Simba", "Snoopy", "Sol", "Sombra", "Suki", "Tequila", "Thor", "Tita", "Tobias", "Tom", "Toretto", "Ursinho",
-            "Vera", "Xuxa", "Yoda", "Zeca", "Zoe"
-        ];
-        const generateButton = document.getElementById('generate-btn');
-        const nameDisplay = document.getElementById('generated-name');
-        const radioButtons = document.querySelectorAll('input[name="type"]');
-        const spinner = document.getElementById('spinner');
-       const shareArea = document.getElementById('share-area');
-         let generatedName = '';
-       const body = document.querySelector('body');
-         let selectedLetter = null;
-       generateButton.addEventListener('click', () => {
-            spinner.style.display = 'inline-block';
-            setTimeout(() => {
-                 spinner.style.display = 'none';
-                let selectedType = '';
-               radioButtons.forEach(radio => {
-                    if (radio.checked) {
-                       selectedType = radio.value;
-                  }
-               });
-                let name = '';
-                let filteredNames = [];
-                 if (selectedType === 'menino') {
-                    filteredNames = boyNames;
-                } else if (selectedType === 'menina') {
-                     filteredNames = girlNames;
-               } else if (selectedType === 'pet') {
-                    filteredNames = petNames;
-                }
-                 if (selectedLetter) {
-                     filteredNames = filteredNames.filter(name => name.startsWith(selectedLetter));
-                 }
-                 if (filteredNames.length > 0) {
-                    name = filteredNames[Math.floor(Math.random() * filteredNames.length)];
-                  }
-                generatedName = name;
-               nameDisplay.innerHTML = `<span style="display:inline-flex; align-items: center;">${name} <button class="copy-button" onclick="copyNameToClipboard(this)"><i class="bi bi-clipboard"></i></button></span>`;
-                 nameDisplay.classList.add('fade-in');
-                 shareArea.style.display = 'block';
-                 setTimeout(() => {
-                     nameDisplay.classList.remove('fade-in');
-                 }, 300);
-            }, 500);
-       });
-        radioButtons.forEach(radio => {
-            radio.addEventListener('change', function() {
-               body.classList.remove('boy-bg', 'girl-bg', 'pet-bg');
-                if (this.value === 'menino') {
-                    body.classList.add('boy-bg');
-                } else if (this.value === 'menina') {
-                    body.classList.add('girl-bg');
-                } else if (this.value === 'pet') {
-                     body.classList.add('pet-bg');
-               }
-          });
-       });
-        const letterItems = document.querySelectorAll('.letter-item');
-       letterItems.forEach(item => {
-           item.addEventListener('click', function(e) {
-                e.preventDefault();
-                letterItems.forEach(i => i.classList.remove('selected'));
-                 this.classList.add('selected');
-                 selectedLetter = this.dataset.letter;
-            });
-       });
-       function copyNameToClipboard(button) {
-         navigator.clipboard.writeText(generatedName)
-            .then(() => {
-                const icon = button.querySelector('i');
-               icon.classList.remove('bi-clipboard');
-                icon.classList.add('bi-check-lg');
-                button.classList.add('copied');
-               setTimeout(() => {
-                   icon.classList.remove('bi-check-lg');
-                    icon.classList.add('bi-clipboard');
-                   button.classList.remove('copied');
-                }, 1000);
-            })
-           .catch(err => {
-                console.error('Erro ao copiar o nome: ', err);
-           });
+          <div class="d-flex flex-wrap gap-2 mb-4" id="stats"></div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <h2 class="h5">Histórico (últimos 10)</h2>
+              <ul id="history" class="list-group"></ul>
+            </div>
+            <div class="col-md-6">
+              <h2 class="h5">Favoritos</h2>
+              <ul id="favorites" class="list-group"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const NAMES = {
+      menino: ["Gabriel", "Lucas", "Miguel", "Arthur", "Enzo", "Pedro", "Rafael", "Gustavo", "Matheus", "Felipe", "Vitor", "Ricardo", "Daniel", "Thiago", "Leonardo", "Diego", "Henrique", "João", "Carlos", "Marcelo", "André", "Bruno", "Igor", "Fábio", "Fernando", "Samuel", "Eduardo", "Maurício", "Alexandre", "Luiz", "Vinícius", "José", "Caio", "William", "Douglas", "Erick", "Rodrigo", "Renan", "Cauã", "Augusto", "Davi", "Otávio", "Guilherme", "Yuri", "Luan", "Mateus", "Benjamin", "Enrico", "Alan", "Bernardo", "Leandro", "Ezequiel", "Isaac", "Nicolas", "Jorge", "Flávio", "Ian", "Hugo", "Mário", "Raul", "Marco", "Paulo", "Anderson", "Murilo", "Heitor", "Theo", "Breno", "Lorenzo", "Levi", "Nathan", "Ryan", "Vicente", "Yago", "Christian", "Danilo", "Fabrício", "Gael", "Ícaro", "Kenzo", "Oliver", "Pietro", "Saulo", "Thales", "Ulisses", "Wesley", "Xavier", "Zaqueu"],
+      menina: ["Ana", "Beatriz", "Carolina", "Débora", "Fernanda", "Patrícia", "Juliana", "Gabriela", "Camila", "Renata", "Mariana", "Sabrina", "Raquel", "Aline", "Bianca", "Roberta", "Tatiane", "Daniela", "Luana", "Larissa", "Amanda", "Natália", "Jéssica", "Vanessa", "Tânia", "Isabela", "Bruna", "Cláudia", "Paula", "Vera", "Carla", "Priscila", "Fabiana", "Luciana", "Mônica", "Gisele", "Rafaela", "Marina", "Flávia", "Milena", "Kelly", "Giovanna", "Olga", "Joana", "Cristiane", "Diana", "Elaine", "Adriana", "Silvana", "Marcela", "Valéria", "Andrea", "Sandra", "Lúcia", "Andressa", "Maria", "Karine", "Regina", "Antônia", "Rosângela", "Janaína", "Michele", "Sônia", "Kátia", "Marta", "Heloísa", "Nathalia", "Alice", "Yasmin", "Sofia", "Manuela", "Valentina", "Helena", "Olívia", "Lívia", "Melissa", "Ester", "Lorena", "Elisa", "Tainá", "Vitória", "Eduarda", "Iris", "Cecília", "Clarice", "Letícia", "Isis"],
+      pet: ["Rex", "Luna", "Thor", "Mel", "Bob", "Nina", "Max", "Amora", "Pipoca", "Bidu", "Fred", "Mia", "Simba", "Belinha", "Toby", "Bolinha", "Meg", "Lili", "Toddy", "Kiko", "Polly", "Caco", "Fifi", "Milo", "Aisha", "Nino", "Jasmim", "Snoopy", "Duque", "Tita", "Bibi", "Nico", "Candy", "Malu", "Pirata", "Minnie", "Caramelo", "Bolt", "Canela", "Chico", "Darth", "Diva", "Dudu", "Dumbo", "Floquinho", "Garfield", "Gigi", "Hulk", "Kiwi", "Lady", "Lassie", "Lia", "Lilo", "Lulu", "Magia", "Marley", "Mickey", "Mila", "Mimo", "Nina", "Paçoca", "Pérola", "Pimpolho", "Pongo", "Preta", "Pretinha", "Princesa", "Pudim", "Saci", "Safira", "Shakira", "Simba", "Sol", "Sombra", "Suki", "Tequila", "Tobias", "Tom", "Ursinho", "Yoda", "Zeca", "Zoe"]
+    };
+
+    const state = {
+      selectedLetter: null,
+      generated: "",
+      recent: [],
+      history: JSON.parse(sessionStorage.getItem("history") || "[]"),
+      favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
+      theme: localStorage.getItem("theme") || "light"
+    };
+
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+    const categoryEl = document.querySelector("#category");
+    const generatedEl = document.querySelector("#generated-name");
+    const historyEl = document.querySelector("#history");
+    const favoritesEl = document.querySelector("#favorites");
+    const statsEl = document.querySelector("#stats");
+    const lengthEl = document.querySelector("#length");
+    const containsEl = document.querySelector("#contains");
+    const noRepeatEl = document.querySelector("#no-repeat");
+
+    function persistFavorites() {
+      localStorage.setItem("favorites", JSON.stringify(state.favorites));
+    }
+
+    function persistHistory() {
+      sessionStorage.setItem("history", JSON.stringify(state.history.slice(0, 10)));
+    }
+
+    function normalize(name) {
+      return name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
+    }
+
+    function getCandidates() {
+      const selectedNames = [...NAMES[categoryEl.value]];
+      const maxLength = Number(lengthEl.value);
+      const contains = normalize((containsEl.value || "").trim());
+      let candidates = selectedNames;
+
+      if (state.selectedLetter) {
+        candidates = candidates.filter((n) => normalize(n).startsWith(state.selectedLetter));
       }
-    function shareOnWhatsApp() {
-           const message = `Confira este nome gerado: ${generatedName}!\n\nCrie o seu também no Gerador de Nomes Aleatórios: https://geranome.netlify.app/`;
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
-       }
-      function shareOnFacebook() {
-           const message = `Confira este nome gerado: ${generatedName}!\n\nCrie o seu também no Gerador de Nomes Aleatórios: https://geranome.netlify.app/`;
-           window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}"e=${encodeURIComponent(message)}`, '_blank');
+      if (maxLength) {
+        candidates = candidates.filter((n) => n.length <= maxLength);
       }
-    function shareOnTwitter() {
-           const message = `Confira este nome gerado: ${generatedName}!\n\nCrie o seu também no Gerador de Nomes Aleatórios: https://geranome.netlify.app/`;
-           window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`, '_blank');
-       }
-    </script>
+      if (contains) {
+        candidates = candidates.filter((n) => normalize(n).includes(contains));
+      }
+      if (noRepeatEl.checked) {
+        const recentSet = new Set(state.recent);
+        const reduced = candidates.filter((n) => !recentSet.has(n));
+        if (reduced.length) candidates = reduced;
+      }
+      return candidates;
+    }
+
+    function updateStats(candidates) {
+      const totalCategory = NAMES[categoryEl.value].length;
+      const items = [
+        `Disponíveis: ${candidates.length}/${totalCategory}`,
+        `Gerados na sessão: ${state.history.length}`,
+        `Favoritos: ${state.favorites.length}`,
+        state.selectedLetter ? `Inicial: ${state.selectedLetter}` : "Inicial: todas"
+      ];
+      statsEl.innerHTML = items.map((i) => `<span class="pill">${i}</span>`).join("");
+    }
+
+    function renderList(el, values, className) {
+      el.innerHTML = values.length
+        ? values.map((name) => `<li class="list-group-item d-flex justify-content-between align-items-center ${className}" data-name="${name}">${name}<i class="bi bi-arrow-up-right-circle text-secondary"></i></li>`).join("")
+        : '<li class="list-group-item text-secondary">Sem itens por enquanto.</li>';
+    }
+
+    function renderAll(candidates = getCandidates()) {
+      renderList(historyEl, state.history.slice(0, 10), "history-item");
+      renderList(favoritesEl, state.favorites, "favorite-item");
+      updateStats(candidates);
+    }
+
+    function setGeneratedName(name) {
+      state.generated = name;
+      generatedEl.textContent = name;
+      ["#copy-btn", "#favorite-btn", "#share-btn"].forEach((id) => {
+        document.querySelector(id).disabled = false;
+      });
+      const favoriteIcon = document.querySelector("#favorite-btn i");
+      favoriteIcon.className = state.favorites.includes(name) ? "bi bi-star-fill" : "bi bi-star";
+    }
+
+    function generateName() {
+      const candidates = getCandidates();
+      if (!candidates.length) {
+        generatedEl.textContent = "Nenhum nome encontrado para os filtros selecionados 😢";
+        updateStats(candidates);
+        return;
+      }
+      const chosen = candidates[Math.floor(Math.random() * candidates.length)];
+      setGeneratedName(chosen);
+      state.history.unshift(chosen);
+      state.history = [...new Set(state.history)].slice(0, 10);
+      state.recent.unshift(chosen);
+      state.recent = state.recent.slice(0, 5);
+      persistHistory();
+      renderAll(candidates);
+    }
+
+    function toggleFavorite() {
+      if (!state.generated) return;
+      if (state.favorites.includes(state.generated)) {
+        state.favorites = state.favorites.filter((n) => n !== state.generated);
+      } else {
+        state.favorites.unshift(state.generated);
+      }
+      persistFavorites();
+      setGeneratedName(state.generated);
+      renderAll();
+    }
+
+    async function copyName() {
+      if (!state.generated) return;
+      try {
+        await navigator.clipboard.writeText(state.generated);
+      } catch (_) {
+        const helper = document.createElement("textarea");
+        helper.value = state.generated;
+        document.body.appendChild(helper);
+        helper.select();
+        document.execCommand("copy");
+        helper.remove();
+      }
+    }
+
+    async function shareName() {
+      const text = `Olha esse nome que gerei: ${state.generated} ✨`;
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: "Gerador de Nomes", text });
+          return;
+        } catch (_) {}
+      }
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+    }
+
+    document.querySelector("#generate-btn").addEventListener("click", generateName);
+    document.querySelector("#favorite-btn").addEventListener("click", toggleFavorite);
+    document.querySelector("#share-btn").addEventListener("click", shareName);
+    document.querySelector("#copy-btn").addEventListener("click", copyName);
+
+    [categoryEl, lengthEl, containsEl, noRepeatEl].forEach((el) => el.addEventListener("input", () => renderAll()));
+
+    historyEl.addEventListener("click", (event) => {
+      const item = event.target.closest("[data-name]");
+      if (item) setGeneratedName(item.dataset.name);
+    });
+
+    favoritesEl.addEventListener("click", (event) => {
+      const item = event.target.closest("[data-name]");
+      if (item) setGeneratedName(item.dataset.name);
+    });
+
+    function renderLetterButtons() {
+      const wrapper = document.querySelector("#letters");
+      wrapper.innerHTML = `<button type="button" class="${state.selectedLetter ? "" : "active"}" data-letter="">Todas</button>` +
+        letters.map((l) => `<button type="button" class="${state.selectedLetter === l ? "active" : ""}" data-letter="${l}">${l}</button>`).join("");
+    }
+
+    document.querySelector("#letters").addEventListener("click", (event) => {
+      const btn = event.target.closest("button[data-letter]");
+      if (!btn) return;
+      state.selectedLetter = btn.dataset.letter || null;
+      renderLetterButtons();
+      renderAll();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      const tag = event.target.tagName;
+      const isTyping = ["INPUT", "TEXTAREA", "SELECT"].includes(tag) || event.target.isContentEditable;
+      if (event.code === "Space" && !isTyping) {
+        event.preventDefault();
+        generateName();
+      }
+    });
+
+    function applyTheme(theme) {
+      document.body.dataset.theme = theme;
+      localStorage.setItem("theme", theme);
+      state.theme = theme;
+    }
+
+    document.querySelector("#theme-toggle").addEventListener("click", () => {
+      applyTheme(state.theme === "light" ? "dark" : "light");
+    });
+
+    applyTheme(state.theme);
+    renderLetterButtons();
+    renderAll();
+  </script>
 </body>
 </html>
